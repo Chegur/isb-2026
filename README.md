@@ -8,6 +8,8 @@
 
 Методические указания к лабораторным работам находятся в директории [`docs`](https://github.com/itsecd/isb-2026/tree/main/docs) внутри репозитория.
 
+[Ссылка](https://docs.google.com/spreadsheets/d/1dPbhqPEFn-7yikj4PdBE9IvYLHQyR_k7Zd-fa-FxCTs/edit?usp=sharing) на ведомость для проверки своего варианта.
+
 :collision: **Внимательно прочитайте правила работы с кодом перед тем как приступать к выполнению заданий** :collision:
 
 ## Правила работы с кодом:
