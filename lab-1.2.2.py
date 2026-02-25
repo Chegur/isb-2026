@@ -39,12 +39,6 @@ def encrypt(text, key_map) -> str:
     """Шифрует текст"""
     return ''.join(key_map.get(char, char) for char in text)
 
-
-def decrypt(text, reverse_key_map) -> str:
-    """Дешифрует текст"""
-    return ''.join(reverse_key_map.get(char, char) for char in text)
-
-
 def main() -> None:
     key_map, reverse_key_map = load_key(KEY_FILE)
     print(f"Ключ загружен: {len(key_map)} пар символов")
@@ -54,7 +48,7 @@ def main() -> None:
     print(f"Входной файл прочитан: {len(text)} символов")
     
     if DECRYPT_MODE:
-        result = decrypt(text, reverse_key_map)
+        result = encrypt(text, reverse_key_map)
         print("Режим: ДЕШИФРОВАНИЕ")
     else:
         result = encrypt(text, key_map)
@@ -68,3 +62,4 @@ def main() -> None:
 
 if __name__ == '__main__':
     main()
+
