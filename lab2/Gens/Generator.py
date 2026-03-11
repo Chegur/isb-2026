@@ -6,7 +6,8 @@ def generate_sequence(length):
 
 
 if __name__ == '__main__':
-    seq = generate_sequence(10000)
+    seq = generate_sequence(128)
     with open("..\sequences\sequence_py.txt", "w") as f:
         f.write(seq)
+
     print("ok")
