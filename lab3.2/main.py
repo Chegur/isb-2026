@@ -1,7 +1,6 @@
 import asymmetric
 import storage
 import symmetric
-import sys
 import os
 
 def run_generation():
@@ -135,14 +134,14 @@ def run_decryption():
 
     try:
         print("Загрузка ключей...")
-        priv_key = storage.load_private_key(path_priv)
-        enc_sym_key_bytes = storage.load_encrypted_key(path_enc_sym)
+        priv_key = storage.load_private_key_pem(path_priv)
+        enc_sym_key_bytes = storage.load_encrypted_key_pem(path_enc_sym)
 
         print("Расшифровка симметричного ключа...")
-        sym_key = asymmetric.decrypt_key(enc_sym_key_bytes, priv_key)
+        sym_key = asymmetric.decrypt_sym_key_rsa(enc_sym_key_bytes, priv_key)
 
         print("Чтение зашифрованного файла (IV + Data)...")
-        iv, ciphertext = storage.load_encrypted_data(path_src)
+        iv, ciphertext = storage.load_sipher_with_iv(path_src)
 
         print("Дешифрование данных (Camellia)...")
         decrypted_data = symmetric.decrypt(sym_key, ciphertext, iv)
@@ -206,10 +205,4 @@ def main():
                 print(f"Неизвестная команда: '{action}'. Попробуйте снова.")
 
 if __name__ == "__main__":
-    try:
-        import utilites, symmetric, asymmetric, storage
-        main()
-    except ImportError as e:
-        print(f"Ошибка импорта модулей: {e}")
-        print("Убедитесь, что папка 'modules' существует и содержит все необходимые файлы.")
-        sys.exit(1)
+    main()
